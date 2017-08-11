@@ -2,10 +2,9 @@
 
 [![Build Status](https://travis-ci.org/conda/conda-tracker.svg?branch=master)](https://travis-ci.org/conda/conda-tracker)
 
-conda-tracker is a tool that links git repositories and patches into an aggregate 
-repository. By grouping repositories and patches into a single repository, tasks
-such as updating conda recipes prior to submitting to conda-concourse-ci become
-much easier.
+conda-tracker is a tool that clones repositories from an organization into an aggregate repository.
+By grouping repositories into a single repository, tasks such as updating conda recipes prior to
+submitting to conda-concourse-ci become much easier.
 
 ## Installation
 
@@ -29,18 +28,18 @@ as follows:
     usage: conda-tracker [OPTIONS] COMMAND [ARGS]...
     
     commands:
-      add           Add a repository to the aggregate repository
-      update        Update a linked repository to the master branch
-      patch         Apply a patch to the corresponding repository in the directory
+      add           Add all of the repositories of an organization into the aggregate repository
+      update        Update all submodules inside the given aggregate repository
+      gather        Gather new organization repositories into the aggregate repository
+      submit        Submit all aggregate repository changes to the origin remote
     
     positional arguments:
-      repository    The repository to link to the aggregate repository
-      patch-file    The patch file to add to the linked repository
+      repository    The aggregate repository
+      organization  The organization hosting the desired repositories to clone
     
     optional arguments:
-      branch        The specific branch to link to
-      all-recipes   Updates all linked repositories in the aggregate repository
-      remove        Remove a patch file from the linked repository
+      --refine      
+
 
 The `add` and `update` commands take a repository URL as a positional argument whereas
 the `patch` command takes the file path to the patch file as a positional argument.
